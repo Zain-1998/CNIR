@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Change name</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <link rel="icon" href="{{url_for('static',filename='images/icon.png')}}" type="image/x-icon">
+    <!-- Custom Theme files -->
+    <link href="{{url_for('static',filename='css/style.css')}}" rel="stylesheet" type="text/css">
+    <!-- //Custom Theme files -->
+    <!-- web font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="//fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i" rel="stylesheet">
+    <!-- //web font -->
+    <script src="{{url_for('static',filename='javascript/validation.js')}}"></script>
+</head>
+
+<body class="main-div">
+    <!-- main -->
+    <div class="main-w3layouts wrapper">
+        <h1>change name</h1>
+        <div class="main-agileinfo">
+            <div class="agileits-top card-div">
+                <img class="profile" src="{{url_for('static',filename='images/account.png')}}" alt="Password">
+                <br>
+                <form action="" method="POST" onsubmit="return validate_name()">
+                    <i class="material-icons icon">person</i>
+                    <input id="first_name" class="text" type="text" name="first_name" placeholder="First name" required="">
+                    <br>
+                    <i class="material-icons icon">person</i>
+                    <input id="last_name" class="text" type="text" name="last_name" placeholder="Last name" required="">
+                    <input id="submit" type="submit" value="Update name">
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- //main -->
+</body>
+
+</html>
