@@ -1,0 +1,8 @@
+{% for news in range(0,5) %}
+    <tr>
+        <td><img src="{{nation_sports_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+        <td>{{nation_sports_list[news][0]}}</td>
+        <td><a href="{{nation_sports_list[news][2]}}" target="_blank">{{nation_sports_list[news][2]}}</a></td>
+        <td>{{nation_sports_list[news][3]}}</td>
+    </tr>
+{% endfor %}

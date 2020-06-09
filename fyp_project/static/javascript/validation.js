@@ -43,3 +43,17 @@ function validate_name() {
     var last_name = document.getElementById("last_name").value;
     return true;
 }
+
+//Handling user insterests
+
+// function handle_interests(){
+//     var checkbox=document.getElementById("checkbox");
+//     var get_value=null;
+//     for(i=0;i<=3;i++){
+//         if(checkbox[i].checkbox==true){
+//             get_value=get_value+checkbox[i].value;
+//         }
+//     }
+//     checkbox.innerHTML="nani";
+//     return true;
+// }

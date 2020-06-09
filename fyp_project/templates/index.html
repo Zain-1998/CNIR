@@ -36,8 +36,8 @@
     <section id="nav-bar">
         <nav class="navbar navbar-expand-lg navbar-light">
 
-            <a class="navbar-brand" style="color: white; margin-top: 0px; padding-top: 0px;" href="#">
-                <img src="{{url_for('static',filename='images/logo.PNG')}}" width="200" height="150" alt="">
+            <a class="navbar-brand" style="color: white; margin-top: 0px; padding-top: 0px;" href="/">
+                <img src="{{url_for('static',filename='images/logo.PNG')}}" width="150" height="100" alt="">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <i class="fa fa-bars"></i>
@@ -46,9 +46,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">LATEST NEWS</a>
+                        <a class="nav-link" href="/latest-news">LATEST NEWS</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item">
                         <a class="nav-link" href="#">ABOUT</a>
                     </li>
                     <li class="nav-item">
@@ -196,9 +196,8 @@
         <div style="overflow-x: auto; max-height: 700px;">
             <table>
                 <tr>
-                    <th>Sr.</th>
+                    <th>Picture</th>
                     <th>Title</th>
-                    <th>Description</th>
                     <th>Link</th>
                     <th>Source</th>
                 </tr>
@@ -224,7 +223,7 @@
                             <h5 class="widget-title">Quick Links<span></span></h5>
                             <ul class="thumbnail-widget">
                                 <li>
-                                    <div class="thumb-content"><a href="#.">Latest News</a></div>
+                                    <div class="thumb-content"><a href="/latest-news">Latest News</a></div>
                                 </li>
                                 <li>
                                     <div class="thumb-content"><a href="#.">About</a></div>

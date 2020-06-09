@@ -2,9 +2,32 @@ from flask import Flask,render_template,url_for,request,redirect,session
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
-from the_news import  news_list
-from pakistan_today import news_list_1
-# import sports
+from latest_nation import latest_nation_list
+from latest_dawn import latest_dawn_list
+from latest_pakistan_today import latest_pakToday_list
+from latest_daily_pakistan import latest_dailyPak_list
+from latest_tribune import latest_tribune_list
+
+from nation_sports import nation_sports_list
+from nation_business import nation_business_list
+from nation_entertainment import nation_entertainment_list
+from nation_pakistan import nation_pakistan_list    
+from dailyPak_sports import dailyPak_sports_list
+from dailyPak_business import dailyPak_business_list
+from dailyPak_entertainment import dailyPak_entertainment_list
+from dailyPak_pakistan import dailyPak_pakistan_list
+from dawn_sports import dawn_sports_list
+from dawn_business import dawn_business_list
+from dawn_entertainment import dawn_entertainment_list
+from dawn_pakistan import dawn_pakistan_list
+from pakToday_sports import pakToday_sports_list
+from pakToday_business import pakToday_business_list
+from pakToday_entertainment import pakToday_entertainment_list
+from pakToday_pakistan import pakToday_pakistan_list
+from tribune_sports import tribune_sports_list
+from tribune_bussines import tribune_bussiness_list
+from tribune_entertainment import tribune_entertainment_list
+from tribune_pakistan import tribune_pakistan_list
 
 app=Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///databases/user_databases/cnir.db'
@@ -44,7 +67,6 @@ def index():
         return redirect(url_for("user_index"))
     else:
         return render_template('index.html')
-        # return render_template('index.html',latest_news_thenews=news_list,latest_news_pakistantoday=news_list_1,accounts=account)
 @app.route('/user-index',methods=['POST','GET'])
 def user_index():
     if request.method=='POST' and "id" in session:
@@ -59,31 +81,114 @@ def user_index():
             return 'There was an issue searching your News.'
     elif "user" in session:
         account=session["user"]
-        # return render_template('user_index.html',accounts=account)
-        return render_template('user_index.html',latest_news_thenews=news_list,latest_news_pakistantoday=news_list_1,accounts=account)
+        return render_template('user_index.html',accounts=account)
     else:
         return redirect(url_for("signin"))
-@app.route('/dashboard')
+@app.route('/dashboard',methods=['POST','GET'])
 def dashboard():
+    if request.method == 'POST' and "id" in session:
+        u_id=session["id"]
+        get_value=request.form.getlist('checkbox')
+        if get_value:
+            delete_interest=user_interest.query.filter_by(user_id=u_id).all()
+            try:
+                for interests in delete_interest:
+                    db.session.delete(interests)
+                    db.session.commit()
+            except:
+                return "There was an issue deleting interest"
+            for i in get_value:
+                add_interest=user_interest(interest_name=i,user_id=u_id)
+                try:
+                    db.session.add(add_interest)
+                    db.session.commit()
+                except:
+                    return "problem saving"+get_value[i]
+            return redirect('/dashboard')
+        else:
+            delete_interest=user_interest.query.filter_by(user_id=u_id).all()
+            try:
+                for interests in delete_interest:
+                    db.session.delete(interests)
+                    db.session.commit()
+                return redirect('/dashboard')
+            except:
+                return "There was an issue deleting history"
     if "id" in session:
         get_id=session["id"]
         keywords=search_history.query.filter_by(user_id=get_id).all()
-        return render_template('dashboard.html',keywords=keywords)
+        get_interests=user_interest.query.filter_by(user_id=get_id).all()
+        sports=False
+        entertainment=False
+        pakistan=False
+        business=False
+        for i in get_interests:
+            if i.interest_name == "sports":
+                sports=True
+            if i.interest_name == "entertainment":
+                entertainment=True
+            if i.interest_name == "pakistan":
+                pakistan=True
+            if i.interest_name == "business":
+                business=True
+        return render_template('dashboard.html',
+        keywords=keywords,sports=sports,entertainment=entertainment,
+        business=business,pakistan=pakistan)
     else:
         return redirect(url_for("signin"))
 @app.route('/newsfeed')
 def newsfeed():
     if "id" in session:
-        return render_template('newsfeed.html')
-        # return render_template('newsfeed.html',sports_news=sports.finallist)
+        get_id=session["id"]
+        get_interests=user_interest.query.filter_by(user_id=get_id).all()
+        sports=False
+        entertainment=False
+        pakistan=False
+        business=False
+        for i in get_interests:
+            if i.interest_name == "sports":
+                sports=True
+            if i.interest_name == "entertainment":
+                entertainment=True
+            if i.interest_name == "pakistan":   
+                pakistan=True
+            if i.interest_name == "business":
+                business=True
+        return render_template('newsfeed.html',
+        sports=sports,entertainment=entertainment,business=business,pakistan=pakistan,
+        get_nation_business_list=nation_business_list,
+        get_nation_entertainment_list=nation_entertainment_list,
+        get_nation_pakistan_list=nation_pakistan_list,get_nation_sports_list=nation_sports_list,
+        get_pakToday_business_list=pakToday_business_list,
+        get_pakToday_entertainment_list=pakToday_entertainment_list,
+        get_pakToday_pakistan_list=pakToday_pakistan_list,
+        get_pakToday_sports_list=pakToday_sports_list,
+        get_dawn_business_list=dawn_business_list,
+        get_dawn_entertainment_list=dawn_entertainment_list,
+        get_dawn_pakistan_list=dawn_pakistan_list,get_dawn_sports_list=dawn_sports_list,
+        get_dailyPak_business_list=dailyPak_business_list,
+        get_dailyPak_entertainment_list=dailyPak_entertainment_list,
+        get_dailyPak_pakistan_list=dailyPak_pakistan_list,
+        get_dailyPak_sports_list=dailyPak_sports_list,
+        get_tribune_bussiness_list=tribune_bussiness_list,
+        get_tribune_entertainment_list=tribune_entertainment_list,
+        get_tribune_pakistan_list=tribune_pakistan_list,
+        get_tribune_sports_list=tribune_sports_list)
     else:
         return redirect(url_for("signin"))
+@app.route('/latest-news')
+def latest_news():
+    return render_template('latest_news.html',
+    get_latest_nation_list=latest_nation_list,get_latest_dailyPak_list=latest_dailyPak_list,
+    get_latest_dawn_list=latest_dawn_list,get_latest_pakToday_list=latest_pakToday_list,
+    get_latest_tribune_list=latest_tribune_list)
 @app.route('/signin',methods=['POST','GET'])
 def signin():
     if request.method=='POST':
         email=request.form['email']
         password=request.form['password']
-        account=user_account.query.filter_by(user_email=email,user_password=password).first()
+        account=user_account.query.filter_by(user_email=email,
+        user_password=password).first()
         if account:
             session["user"]=account.user_firstname
             session["id"]=account.user_id
@@ -97,7 +202,8 @@ def signup():
         last_name=request.form['last_name']
         email=request.form['email']
         password=request.form['password']
-        add_user=user_account(user_firstname=first_name,user_lastname=last_name,user_email=email,user_password=password)
+        add_user=user_account(user_firstname=first_name,user_lastname=last_name,
+        user_email=email,user_password=password)
         try:
             db.session.add(add_user)
             db.session.commit()
@@ -184,5 +290,6 @@ def clear():
             return "There was an issue deleting history"
     else:
         return redirect(url_for("signin"))
+
 if __name__ == "__main__":
     app.run(debug=True)

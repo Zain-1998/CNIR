@@ -48,7 +48,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
 
             <a class="navbar-brand" style="color: white; margin-top: 0px; padding-top: 0px;" href="#">
-                <img src="{{url_for('static',filename='images/logo.PNG')}}" width="200" height="150" alt="">
+                <img src="{{url_for('static',filename='images/logo.PNG')}}" width="100" height="100" alt="">
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,34 +57,228 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">News search history</a>
-                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link" href="#">News results History</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                        <a class="nav-link" href="/user-index">HOME</a>
                     </li>
                 </ul>
             </div>
         </nav>
     </section>
-
-        <h2>Newsfeed</h2>
-        <div style="overflow-x: auto; max-height: 700px;">
+    {% if sports==True %}
+        <h2 style="margin: 5px;">Sports</h2>
+        <div style="overflow-x: auto; max-height: 900px;">
             <table>
                 <tr>
-                    <th>Category</th>
-                    <th>Thumbnail</th>
+                    <th>Picture</th>
                     <th>Title</th>
                     <th>Link</th>
                     <th>Source</th>
                 </tr>
-                
+                {% for news in get_nation_sports_list %}
+                    <tr>
+                        <td><img src="{{get_nation_sports_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_nation_sports_list[news][0]}}</td>
+                        <td><a href="{{get_nation_sports_list[news][2]}}" target="_blank">{{get_nation_sports_list[news][2]}}</a></td>
+                        <td>{{get_nation_sports_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+                {% for news in get_dailyPak_sports_list %}
+                    <tr>
+                        <td><img src="{{get_dailyPak_sports_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_dailyPak_sports_list[news][0]}}</td>
+                        <td><a href="{{get_dailyPak_sports_list[news][2]}}" target="_blank">{{get_dailyPak_sports_list[news][2]}}</a></td>
+                        <td>{{get_dailyPak_sports_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+                {% for news in get_dawn_sports_list %}
+                    <tr>
+                        <td><img src="{{get_dawn_sports_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_dawn_sports_list[news][0]}}</td>
+                        <td><a href="{{get_nation_sports_list[news][2]}}" target="_blank">{{get_dawn_sports_list[news][2]}}</a></td>
+                        <td>{{get_dawn_sports_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+                {% for news in get_pakToday_sports_list %}
+                    <tr>
+                        <td><img src="{{get_pakToday_sports_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_pakToday_sports_list[news][0]}}</td>
+                        <td><a href="{{get_pakToday_sports_list[news][2]}}" target="_blank">{{get_pakToday_sports_list[news][2]}}</a></td>
+                        <td>{{get_pakToday_sports_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+                {% for news in get_tribune_sports_list %}
+                    <tr>
+                        <td><img src="{{get_tribune_sports_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_tribune_sports_list[news][0]}}</td>
+                        <td><a href="{{get_tribune_sports_list[news][2]}}" target="_blank">{{get_tribune_sports_list[news][2]}}</a></td>
+                        <td>{{get_tribune_sports_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
             </table>
         </div>
-
+        {% endif %}
+        {% if entertainment==True %}
+        <h2 style="margin: 5px;">Entertainment</h2>
+        <div style="overflow-x: auto; max-height: 900px;">
+            <table>
+                <tr>
+                    <th>Picture</th>
+                    <th>Title</th>
+                    <th>Link</th>
+                    <th>Source</th>
+                </tr>
+                {% for news in get_nation_entertainment_list %}
+                    <tr>
+                        <td><img src="{{get_nation_entertainment_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_nation_entertainment_list[news][0]}}</td>
+                        <td><a href="{{get_nation_entertainment_list[news][2]}}" target="_blank">{{get_nation_entertainment_list[news][2]}}</a></td>
+                        <td>{{get_nation_entertainment_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+                {% for news in get_dailyPak_entertainment_list %}
+                    <tr>
+                        <td><img src="{{get_dailyPak_entertainment_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_dailyPak_entertainment_list[news][0]}}</td>
+                        <td><a href="{{get_dailyPak_entertainment_list[news][2]}}" target="_blank">{{get_dailyPak_entertainment_list[news][2]}}</a></td>
+                        <td>{{get_dailyPak_entertainment_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+                {% for news in get_dawn_entertainment_list %}
+                    <tr>
+                        <td><img src="{{get_dawn_entertainment_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_dawn_entertainment_list[news][0]}}</td>
+                        <td><a href="{{get_dawn_entertainment_list[news][2]}}" target="_blank">{{get_dawn_entertainment_list[news][2]}}</a></td>
+                        <td>{{get_dawn_entertainment_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+                {% for news in get_pakToday_entertainment_list %}
+                    <tr>
+                        <td><img src="{{get_pakToday_entertainment_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_pakToday_entertainment_list[news][0]}}</td>
+                        <td><a href="{{get_pakToday_entertainment_list[news][2]}}" target="_blank">{{get_pakToday_entertainment_list[news][2]}}</a></td>
+                        <td>{{get_pakToday_entertainment_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+                {% for news in get_tribune_entertainment_list %}
+                    <tr>
+                        <td><img src="{{get_tribune_entertainment_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_tribune_entertainment_list[news][0]}}</td>
+                        <td><a href="{{get_tribune_entertainment_list[news][2]}}" target="_blank">{{get_tribune_entertainment_list[news][2]}}</a></td>
+                        <td>{{get_tribune_entertainment_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
+        {% if pakistan==True %}
+        <h2 style="margin: 5px;">Pakistan</h2>
+        <div style="overflow-x: auto; max-height: 900px;">
+            <table>
+                <tr>
+                    <th>Picture</th>
+                    <th>Title</th>
+                    <th>Link</th>
+                    <th>Source</th>
+                </tr>
+                {% for news in get_nation_pakistan_list %}
+                    <tr>
+                        <td><img src="{{get_nation_pakistan_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_nation_pakistan_list[news][0]}}</td>
+                        <td><a href="{{get_nation_pakistan_list[news][2]}}" target="_blank">{{get_nation_pakistan_list[news][2]}}</a></td>
+                        <td>{{get_nation_pakistan_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+                {% for news in get_dailyPak_pakistan_list %}
+                    <tr>
+                        <td><img src="{{get_dailyPak_pakistan_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_dailyPak_pakistan_list[news][0]}}</td>
+                        <td><a href="{{get_dailyPak_pakistan_list[news][2]}}" target="_blank">{{get_dailyPak_pakistan_list[news][2]}}</a></td>
+                        <td>{{get_dailyPak_pakistan_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+                {% for news in get_dawn_pakistan_list %}
+                    <tr>
+                        <td><img src="{{get_dawn_pakistan_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_dawn_pakistan_list[news][0]}}</td>
+                        <td><a href="{{get_dawn_pakistan_list[news][2]}}" target="_blank">{{get_dawn_pakistan_list[news][2]}}</a></td>
+                        <td>{{get_dawn_pakistan_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+                {% for news in get_pakToday_pakistan_list %}
+                    <tr>
+                        <td><img src="{{get_pakToday_pakistan_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_pakToday_pakistan_list[news][0]}}</td>
+                        <td><a href="{{get_pakToday_pakistan_list[news][2]}}" target="_blank">{{get_pakToday_pakistan_list[news][2]}}</a></td>
+                        <td>{{get_pakToday_pakistan_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+                {% for news in get_tribune_pakistan_list %}
+                    <tr>
+                        <td><img src="{{get_tribune_pakistan_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_tribune_pakistan_list[news][0]}}</td>
+                        <td><a href="{{get_tribune_pakistan_list[news][2]}}" target="_blank">{{get_tribune_pakistan_list[news][2]}}</a></td>
+                        <td>{{get_tribune_pakistan_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
+        {% if business==True %}
+        <h2 style="margin: 5px;">Business</h2>
+        <div style="overflow-x: auto; max-height: 900px;">
+            <table>
+                <tr>
+                    <th>Picture</th>
+                    <th>Title</th>
+                    <th>Link</th>
+                    <th>Source</th>
+                </tr>
+                {% for news in get_nation_business_list %}
+                    <tr>
+                        <td><img src="{{get_nation_business_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_nation_business_list[news][0]}}</td>
+                        <td><a href="{{get_nation_business_list[news][2]}}" target="_blank">{{get_nation_business_list[news][2]}}</a></td>
+                        <td>{{get_nation_business_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+                {% for news in get_dailyPak_business_list %}
+                    <tr>
+                        <td><img src="{{get_dailyPak_business_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_dailyPak_business_list[news][0]}}</td>
+                        <td><a href="{{get_dailyPak_business_list[news][2]}}" target="_blank">{{get_dailyPak_business_list[news][2]}}</a></td>
+                        <td>{{get_dailyPak_business_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+                {% for news in get_dawn_business_list %}
+                    <tr>
+                        <td><img src="{{get_dawn_business_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_dawn_business_list[news][0]}}</td>
+                        <td><a href="{{get_dawn_business_list[news][2]}}" target="_blank">{{get_dawn_business_list[news][2]}}</a></td>
+                        <td>{{get_dawn_business_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+                {% for news in get_pakToday_business_list %}
+                    <tr>
+                        <td><img src="{{get_pakToday_business_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_pakToday_business_list[news][0]}}</td>
+                        <td><a href="{{get_pakToday_business_list[news][2]}}" target="_blank">{{get_pakToday_business_list[news][2]}}</a></td>
+                        <td>{{get_pakToday_business_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+                {% for news in get_tribune_busniess_list %}
+                    <tr>
+                        <td><img src="{{get_tribune_busniess_list[news][1]}}" alt="Image" height="100px" width="100px"></td>
+                        <td>{{get_tribune_busniess_list[news][0]}}</td>
+                        <td><a href="{{get_tribune_busniess_list[news][2]}}" target="_blank">{{get_tribune_busniess_list[news][2]}}</a></td>
+                        <td>{{get_tribune_busniess_list[news][3]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
+        {% if sports==False and entertainment==False and pakistan==False and business==False %}
+            <h2>Try selecting interests and come again!</h2>
+        {% endif %}
         <footer id="footer" class="footer-1">
             <div class="main-footer widgets-dark typo-light">
                 <div class="container">
@@ -102,16 +296,7 @@
                                 <h5 class="widget-title">Quick Links<span></span></h5>
                                 <ul class="thumbnail-widget">
                                     <li>
-                                        <div class="thumb-content"><a href="/dashboard">Dashboard</a></div>
-                                    </li>
-                                    <li>
-                                        <div class="thumb-content"><a href="#.">Latest news</a></div>
-                                    </li>
-                                    <li>
-                                        <div class="thumb-content"><a href="#">News search history</a></div>
-                                    </li>
-                                    <li>
-                                        <div class="thumb-content"><a href="#">News results history</a></div>
+                                        <div class="thumb-content"><a href="/user-index">HOME</a></div>
                                     </li>
                                 </ul>
                             </div>

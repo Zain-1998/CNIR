@@ -37,7 +37,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
 
             <a class="navbar-brand" style="color: white; margin-top: 0px; padding-top: 0px;" href="/user-index">
-                <img src="{{url_for('static',filename='images/logo.PNG')}}" width="200" height="150" alt="">
+                <img src="{{url_for('static',filename='images/logo.PNG')}}" width="150" height="100" alt="">
             </a>
             <h2 class="navbar-brand" style="color: white; margin: 5px; padding: 5px;">Welcome, {{accounts}}!</h2>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,7 +53,7 @@
                         <a class="nav-link" href="/newsfeed">NEWSFEED</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">LATEST NEWS</a>
+                        <a class="nav-link" href="/latest-news">LATEST NEWS</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/signout">SIGN OUT</a>
@@ -199,24 +199,7 @@
                     <th>Link</th>
                     <th>Source</th>
                 </tr>
-                {% for news in range(0,5) %}
-                <tr>
-                    <td>{{news+1}}</td>
-                    <td>{{latest_news_thenews[news][0]}}</td>
-                    <td>{{latest_news_thenews[news][1]}}</td>
-                    <td><a href="{{latest_news_thenews[news][3]}}" target="_blank">{{latest_news_thenews[news][3]}}</a></td>
-                    <td>{{latest_news_thenews[news][4]}}</td>
-                </tr>
-                {% endfor %}
-                {% for news in range(0,5) %}
-                <tr>
-                    <td>{{news+6}}</td>
-                    <td>{{latest_news_pakistantoday[news][0]}}</td>
-                    <td>{{latest_news_pakistantoday[news][1]}}</td>
-                    <td><a href="{{latest_news_pakistantoday[news][3]}}" target="_blank">{{latest_news_pakistantoday[news][3]}}</a></td>
-                    <td>{{latest_news_pakistantoday[news][4]}}</td>
-                </tr>
-                {% endfor %}
+                
             </table>
         </div>
 
@@ -245,7 +228,7 @@
                                         <a href="/newsfeed">NewsFeed</a></div>
                                 </li>
                                 <li>
-                                    <div class="thumb-content"><a href="#.">Latest News</a></div>
+                                    <div class="thumb-content"><a href="latest-news">Latest News</a></div>
                                 </li>
                                 <li>
                                     <div class="thumb-content"><a href="/dashboard">Dashboard</a></div>
