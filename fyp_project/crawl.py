@@ -3,7 +3,7 @@ import pandas as pd
 import requests
 import bs4
 
-
+#this line will be deleted, enclose all this code in a fumction and pass the query as an arguemnt, first save it inside a variable 'news'
 news = input("Enter Your Search Query!! ")
 my_data = {}
 all_news= 0
@@ -25,5 +25,10 @@ for i in search_result:
         print("-------------End Of News-----------------")
   #  df = pd.DataFrame.from_dict(my_data,orient='index', columns=['title','text','link','source'])
   #  df.to_csv('data.csv', mode='w',header=True,index=False)
+
+
+  #this commented code at the end is intended to save the searched threads inside the data.csv file
+
+  #if the files does'nt work install pandas, requests etc
 
 
